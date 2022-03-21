@@ -1,4 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run lint
+npm run lint #这里是在git 进行commit之前进行的npm操作
+
