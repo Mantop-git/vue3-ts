@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    //严格模式的检查（any)
     "strict": true,
+    //对jsx进行怎样的处理
     "jsx": "preserve",
     "moduleResolution": "node",
     "skipLibCheck": true,
