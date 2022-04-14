@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import loginMoudle from './login/login'
 
 export default createStore({
   state: {
@@ -7,5 +8,7 @@ export default createStore({
   getters: {},
   mutations: {},
   actions: {},
-  modules: {},
+  modules: {
+    loginMoudle
+  },
 });

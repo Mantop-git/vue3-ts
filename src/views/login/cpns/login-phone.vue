@@ -30,6 +30,14 @@ export default defineComponent({
       telPhone: "",
       code: "",
     });
+    //通过手机验证码形式登录的函数
+   const phoneLogin=()=>{
+      console.log('机验证码形');
+
+   }
+
+    //验证规则
+    //#region
     const loginRules = reactive({
       account: [
         { required: true, message: "请输入账号", trigger: "blur" },
@@ -50,7 +58,13 @@ export default defineComponent({
         { min: 3, max: 15, message: "长度在 3 到 15 个字符", trigger: "blur" },
       ],
     });
-    return { loginText, loginRules };
+    //#endregion
+
+    return {
+    loginText,
+    loginRules,
+    phoneLogin
+    };
   },
 });
 </script>

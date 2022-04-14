@@ -11,7 +11,7 @@ export default defineComponent({
       name:'he'
     })
     return {
-fuck
+        fuck
     };
   },
 });

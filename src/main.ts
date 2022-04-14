@@ -8,29 +8,29 @@ import store from "./store";
 import "./plugins/element";
 //对项目样式的初始化
 import "normalize.css";
-import requestURL from "@/api/index";
-interface DataType {
-  data: any;
-  returnCode: number;
-  success: string;
-}
+// import requestURL from "@/api/index";
+// interface DataType {
+//   data: any;
+//   returnCode: number;
+//   success: string;
+// }
 
-requestURL
-  .get<DataType>({
-    url: "/home/multidata",
-    // method:'GET',
-    interceptors: {
-      requestIntercepter: (config) => {
-        console.log(config, "single instance config");
-        return config;
-      },
-    },
-  })
-  .then((res) => {
-    console.log(res.data);
-    console.log(res.returnCode);
-    console.log(res.success);
-  });
+// requestURL
+//   .get<DataType>({
+//     url: "/home/multidata",
+//     // method:'GET',
+//     interceptors: {
+//       requestIntercepter: (config) => {
+//         // console.log(config, "single instance config");
+//         return config;
+//       },
+//     },
+//   })
+//   .then((res) => {
+//     console.log(res.data);
+//     console.log(res.returnCode);
+//     console.log(res.success);
+//   });
 // requestURL
 // request()
 //引入element-plus插件

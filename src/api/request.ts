@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import { ElLoading } from "element-plus";
-import { ElementLoading } from "element-plus/es/components/loading/src/directive";
+// import { ElementLoading } from "element-plus/es/components/loading/src/directive";
 //定义一个接口用于对请求拦截和响应拦截进行规则限制
 interface requestInterface {
   //接口实际也是一个类。类就必然包括属性和方法
@@ -20,6 +20,7 @@ interface axionsConfig extends AxiosRequestConfig {
   //这个接口的属性值interceptors必须符合接口requestInterface的规则
   interceptors?: requestInterface;
   showLoading?: boolean;
+
 }
 
 class Request {
@@ -56,7 +57,7 @@ timeout: timeout
     //所有实例都有的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log(config, "config in AllStance");
+        // console.log(config, "config in AllStance");
 
         if (this.showLoading === true) {
           this.loading = ElLoading.service({
@@ -65,7 +66,7 @@ timeout: timeout
             background: "rgba(0, 0, 0, 0.7)",
           });
         } else {
-          console.log("I do not need loading!!");
+          // console.log("I do not need loading!!");
         }
         return config;
       },

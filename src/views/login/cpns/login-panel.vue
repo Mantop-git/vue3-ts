@@ -3,8 +3,8 @@
     <div class="login_body_bg">
       <div class="login_title">后台管理系统</div>
       <div class="login_box">
-        <el-tabs type="border-card" stretch class="demo-tabs">
-          <el-tab-pane label="账号登录">
+        <el-tabs type="border-card" stretch class="demo-tabs" v-model='currentTab'>
+          <el-tab-pane label="账号登录" name='account'>
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><user-filled /></el-icon>
@@ -14,7 +14,7 @@
             <!--引入account组件 -->
             <loginAccount ref="accountRef"></loginAccount>
           </el-tab-pane>
-          <el-tab-pane label="手机登录">
+          <el-tab-pane label="手机登录" name='phone'>
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><phone /></el-icon>
@@ -22,13 +22,13 @@
               </span>
             </template>
             <!--引入loginPhone组件 -->
-            <loginPhone></loginPhone>
+            <loginPhone ref="phoneRef"></loginPhone>
           </el-tab-pane>
         </el-tabs>
 
         <div class="login_footer">
           <div class="remenber">
-            <el-checkbox v-model="isChecked">记住密码</el-checkbox>
+            <el-checkbox v-model="isKeepPassword">记住密码</el-checkbox>
           </div>
           <div class="forget"><el-link type="primary">忘记密码</el-link></div>
         </div>
@@ -44,6 +44,7 @@
 import { defineComponent, ref } from "vue";
 import loginAccount from "./login-account.vue";
 import loginPhone from "./login-phone.vue";
+
 export default defineComponent({
   components: {
     loginAccount,
@@ -51,19 +52,32 @@ export default defineComponent({
   },
   setup() {
     //保存密码是否true
-    const isChecked = ref(true);
+    const isKeepPassword = ref(true);
+    //当前tab是手机登录还是账号登录
+    const currentTab= ref<string>('account')
+
     //拿子组件login-account中的对象，或方法
     const accountRef = ref<InstanceType<typeof loginAccount>>();
+    //拿子组件login-phone中的对象，或方法
+    const phoneRef = ref<InstanceType<typeof loginPhone>>();
+    //随便拿loginAcoutn里 的一个方法
     //点击立即登录后的函数
     const handleClick = () => {
+      if(currentTab.value==='account'){
       //调用login-account中的登录请求-----只有在login-account中有这个方法的时候才调用
-      accountRef.value?.accountLogin();
+      accountRef.value?.accountLogin(isKeepPassword.value);
       console.log("dlognging...");
+      }else{
+        phoneRef.value?.phoneLogin()
+      }
+
     };
     return {
-      isChecked,
+      isKeepPassword,
       handleClick,
       accountRef,
+      phoneRef,
+      currentTab
     };
   },
 });
